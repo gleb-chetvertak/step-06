@@ -36,10 +36,10 @@ snapAndSendBtn.disabled = true;
 // Create a random room if not already present in the URL.
 var isInitiator;
 
-const kvp = document.location.search.substr(1).split('&');
+var kvp = document.location.search.substr(1).split('&');
 
-const params = kvp.reduce((acc, param) => {
-  const  [key, value] = param.split('=');
+var params = kvp.reduce((acc, param) => {
+  var  [key, value] = param.split('=');
 
   acc[key] = value;
 }, {});
@@ -49,7 +49,7 @@ var room = params.room;
 if (!room) {
   room = randomToken();
 
-  const roomUrl = `${document.location.origin}/?room=${room}`;
+  var roomUrl = `${document.location.origin}/?room=${room}`;
   
   window.history.pushState({}, "" , roomUrl);
 }
