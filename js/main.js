@@ -42,6 +42,8 @@ var params = kvp.reduce((acc, param) => {
   var  [key, value] = param.split('=');
 
   acc[key] = value;
+
+  return acc;
 }, {});
 
 var room = params.room;
