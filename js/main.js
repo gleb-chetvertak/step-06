@@ -29,7 +29,7 @@ var iceConfig = {
 var sdpConstraints = {
   mandatory: {
     OfferToReceiveAudio: true,
-    OfferToReceiveVideo: true,
+    // OfferToReceiveVideo: true,
   }
 };
 
@@ -133,7 +133,7 @@ var remoteVideo = document.querySelector('#remoteVideo');
 
 navigator.mediaDevices.getUserMedia({
   audio: true,
-  video: true,
+  // video: true,
 })
 .then(gotStream)
 .catch(function(e) {
