@@ -16,8 +16,10 @@ var pcConfig = {
 
 // Set up audio and video regardless of what devices are present.
 var sdpConstraints = {
-  offerToReceiveAudio: true,
-  offerToReceiveVideo: true
+  mandatory: {
+    OfferToReceiveAudio: true,
+    OfferToReceiveVideo: true,
+  }
 };
 
 /////////////////////////////////////////////
@@ -67,6 +69,7 @@ function sendMessage(message) {
 // This client receives a message
 socket.on('message', function(message) {
   console.log('Client received message:', message);
+  console.log('message', message);
   if (message === 'got user media') {
     maybeStart();
   } else if (message.type === 'offer') {
@@ -107,9 +110,9 @@ function gotStream(stream) {
   localStream = stream;
   localVideo.srcObject = stream;
   sendMessage('got user media');
-  // if (isInitiator) {
+  if (isInitiator) {
     maybeStart();
-  // }
+  }
 }
 
 var constraints = {
@@ -245,9 +248,10 @@ function hangup() {
 }
 
 function handleRemoteHangup() {
-  console.log('Session terminated.');
-  stop();
-  isInitiator = false;
+  // console.log('Session terminated.');
+  // stop();
+  isInitiator = true;
+  isStarted = false;
 }
 
 function stop() {
