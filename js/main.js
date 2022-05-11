@@ -8,17 +8,28 @@ var pc;
 var remoteStream;
 var turnReady;
 
-var pcConfig = {
-  'iceServers': [{
-    'urls': 'stun:stun.l.google.com:19302'
-  }]
+var iceConfig = {
+  iceServers: [
+      { url: 'stun:stun.l.google.com:19302' },
+      { url: 'stun:stun1.l.google.com:19302' },
+      { url: 'stun:stun2.l.google.com:19302' },
+      { url: 'stun:stun3.l.google.com:19302' },
+      { url: 'stun:stun4.l.google.com:19302' },
+      { url: 'stun:stun.ekiga.net' },
+      { url: 'stun:stun.ideasip.com' },
+      { url: 'stun:stun.schlund.de' },
+      { url: 'stun:stun.stunprotocol.org:3478' },
+      { url: 'stun:stun.voiparound.com' },
+      { url: 'stun:stun.voipbuster.com' },
+      { url: 'stun:stun.voipstunt.com' },
+  ],
 };
 
 // Set up audio and video regardless of what devices are present.
 var sdpConstraints = {
   mandatory: {
     OfferToReceiveAudio: true,
-    // OfferToReceiveVideo: true,
+    OfferToReceiveVideo: true,
   }
 };
 
@@ -122,7 +133,7 @@ var remoteVideo = document.querySelector('#remoteVideo');
 
 navigator.mediaDevices.getUserMedia({
   audio: true,
-  // video: true,
+  video: true,
 })
 .then(gotStream)
 .catch(function(e) {
@@ -145,11 +156,11 @@ var constraints = {
 
 console.log('Getting user media with constraints', constraints);
 
-if (location.hostname !== 'localhost') {
-  requestTurn(
-    'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
-  );
-}
+// if (location.hostname !== 'localhost') {
+  // requestTurn(
+  //   'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
+  // );
+// }
 
 function maybeStart() {
   console.log('>>>>>>> maybeStart() ', isStarted, localStream, isChannelReady);
@@ -173,7 +184,7 @@ window.onbeforeunload = function() {
 
 function createPeerConnection() {
   try {
-    pc = new RTCPeerConnection(null);
+    pc = new RTCPeerConnection(iceConfig);
     pc.onicecandidate = handleIceCandidate;
     pc.onaddstream = handleRemoteStreamAdded;
     pc.onremovestream = handleRemoteStreamRemoved;
@@ -227,18 +238,18 @@ function onCreateSessionDescriptionError(error) {
 }
 
 function requestTurn(turnURL) {
-  var turnExists = false;
-  for (var i in pcConfig.iceServers) {
-    if (pcConfig.iceServers[i].urls.substr(0, 5) === 'turn:') {
-      turnExists = true;
-      turnReady = true;
-      break;
-    }
-  }
+  // var turnExists = false;
+  // for (var i in pcConfig.iceServers) {
+  //   if (pcConfig.iceServers[i].urls.substr(0, 5) === 'turn:') {
+  //     turnExists = true;
+  //     turnReady = true;
+  //     break;
+  //   }
+  // }
   // if (!turnExists) {
   //   console.log('Getting TURN server from ', turnURL);
   //   // No TURN server. Get one from computeengineondemand.appspot.com:
-    var xhr = new XMLHttpRequest();
+    // var xhr = new XMLHttpRequest();
   //   xhr.onreadystatechange = function() {
   //     if (xhr.readyState === 4 && xhr.status === 200) {
   //       var turnServer = JSON.parse(xhr.responseText);
@@ -250,8 +261,8 @@ function requestTurn(turnURL) {
   //       turnReady = true;
   //     }
   //   };
-    xhr.open('GET', pcConfig.iceServers[0].urls, true);
-    xhr.send();
+    // xhr.open('GET', pcConfig.iceServers[0].urls, true);
+    // xhr.send();
   // }
 }
 
