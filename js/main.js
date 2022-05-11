@@ -29,35 +29,35 @@ var iceConfig = {
 var sdpConstraints = {
   mandatory: {
     OfferToReceiveAudio: true,
-    // OfferToReceiveVideo: true,
+    OfferToReceiveVideo: true,
   }
 };
 
 /////////////////////////////////////////////
 
-// const kvp = document.location.search.substr(1).split('&');
+const kvp = document.location.search.substr(1).split('&');
 
-// const params = kvp.reduce((acc, param) => {
-//   const  [key, value] = param.split('=');
+const params = kvp.reduce((acc, param) => {
+  const  [key, value] = param.split('=');
 
-//   acc[key] = value;
-// }, {});
+  acc[key] = value;
 
-// var room = params?.room;
+  return acc;
+}, {});
 
-// if (!room) {
-//   room = randomToken();
-//   // Could prompt for room name:
-//   // room = prompt('Enter room name:');
+console.log(params);
 
-//   const roomUrl = `${document.location.origin}/?room=${room}`;
+var room = params.room;
 
-//   window.history.pushState({}, "" , roomUrl);
-// }
+if (!room) {
+  room = randomToken();
+  // Could prompt for room name:
+  // room = prompt('Enter room name:');
 
-var room = 'foo';
-// Could prompt for room name:
-// room = prompt('Enter room name:');
+  const roomUrl = `${document.location.origin}/?room=${room}`;
+
+  window.history.pushState({}, "" , roomUrl);
+}
 
 function randomToken() {
   return Math.floor((1 + Math.random()) * 1e16).toString(16).substring(1);
@@ -133,7 +133,7 @@ var remoteVideo = document.querySelector('#remoteVideo');
 
 navigator.mediaDevices.getUserMedia({
   audio: true,
-  // video: true,
+  video: true,
 })
 .then(gotStream)
 .catch(function(e) {
@@ -155,12 +155,6 @@ var constraints = {
 };
 
 console.log('Getting user media with constraints', constraints);
-
-// if (location.hostname !== 'localhost') {
-  // requestTurn(
-  //   'https://computeengineondemand.appspot.com/turn?username=41784574&key=4080218913'
-  // );
-// }
 
 function maybeStart() {
   console.log('>>>>>>> maybeStart() ', isStarted, localStream, isChannelReady);
