@@ -132,9 +132,9 @@ function maybeStart() {
     pc.addStream(localStream);
     isStarted = true;
     console.log('isInitiator', isInitiator);
-    // if (isInitiator) {
+    if (isInitiator) {
       doCall();
-    // }
+    }
   }
 }
 
