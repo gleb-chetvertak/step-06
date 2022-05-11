@@ -95,7 +95,7 @@ var remoteVideo = document.querySelector('#remoteVideo');
 
 navigator.mediaDevices.getUserMedia({
   audio: false,
-  video: true
+  // video: true
 })
 .then(gotStream)
 .catch(function(e) {
@@ -132,9 +132,9 @@ function maybeStart() {
     pc.addStream(localStream);
     isStarted = true;
     console.log('isInitiator', isInitiator);
-    if (isInitiator) {
+    // if (isInitiator) {
       doCall();
-    }
+    // }
   }
 }
 
