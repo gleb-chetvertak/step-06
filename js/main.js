@@ -18,15 +18,39 @@ var pcConfig = {
 var sdpConstraints = {
   mandatory: {
     OfferToReceiveAudio: true,
-    OfferToReceiveVideo: true,
+    // OfferToReceiveVideo: true,
   }
 };
 
 /////////////////////////////////////////////
 
+// const kvp = document.location.search.substr(1).split('&');
+
+// const params = kvp.reduce((acc, param) => {
+//   const  [key, value] = param.split('=');
+
+//   acc[key] = value;
+// }, {});
+
+// var room = params?.room;
+
+// if (!room) {
+//   room = randomToken();
+//   // Could prompt for room name:
+//   // room = prompt('Enter room name:');
+
+//   const roomUrl = `${document.location.origin}/?room=${room}`;
+
+//   window.history.pushState({}, "" , roomUrl);
+// }
+
 var room = 'foo';
 // Could prompt for room name:
 // room = prompt('Enter room name:');
+
+function randomToken() {
+  return Math.floor((1 + Math.random()) * 1e16).toString(16).substring(1);
+}
 
 var socket = io.connect();
 
@@ -97,8 +121,8 @@ var localVideo = document.querySelector('#localVideo');
 var remoteVideo = document.querySelector('#remoteVideo');
 
 navigator.mediaDevices.getUserMedia({
-  audio: false,
-  video: true,
+  audio: true,
+  // video: true,
 })
 .then(gotStream)
 .catch(function(e) {
