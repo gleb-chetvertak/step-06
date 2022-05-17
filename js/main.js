@@ -128,10 +128,17 @@ socket.on('message', function(message) {
 var localVideo = document.querySelector('#localVideo');
 var remoteVideo = document.querySelector('#remoteVideo');
 
-navigator.mediaDevices.getUserMedia({
-  audio: true,
-  video: true,
-})
+var constraints = navigator.mediaDevices.enumerateDevices().reduce((acc, { kind }) => {
+  if (kind === 'videoinput') {
+    acc.video = true;
+  }
+
+  if (kind === 'audioinput') {
+    acc.audio = true;
+  }
+}, {});
+
+navigator.mediaDevices.getUserMedia(constraints)
 .then(gotStream)
 .catch(function(e) {
   alert('getUserMedia() error: ' + e.name);
@@ -146,10 +153,6 @@ function gotStream(stream) {
     maybeStart();
   }
 }
-
-var constraints = {
-  video: true
-};
 
 console.log('Getting user media with constraints', constraints);
 
