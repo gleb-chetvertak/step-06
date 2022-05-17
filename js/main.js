@@ -128,15 +128,22 @@ socket.on('message', function(message) {
 var localVideo = document.querySelector('#localVideo');
 var remoteVideo = document.querySelector('#remoteVideo');
 
-var constraints = navigator.mediaDevices.enumerateDevices().reduce((acc, { kind }) => {
-  if (kind === 'videoinput') {
-    acc.video = true;
-  }
+var constraints = {};
 
-  if (kind === 'audioinput') {
-    acc.audio = true;
-  }
-}, {});
+navigator.mediaDevices.enumerateDevices()
+  .then((res) => {
+    res.forEach(({ kind }) => {
+      if (kind === 'videoinput') {
+        constraints.video = true;
+      }
+
+      if (kind === 'audioinput') {
+        constraints.audio = true;
+      }
+    });
+  });
+
+console.log(constraints);
 
 navigator.mediaDevices.getUserMedia(constraints)
 .then(gotStream)
