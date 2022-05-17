@@ -44,8 +44,6 @@ const params = kvp.reduce((acc, param) => {
   return acc;
 }, {});
 
-console.log(params);
-
 var room = params.room;
 
 if (!room) {
@@ -250,6 +248,8 @@ function handleRemoteHangup() {
   console.log('Session terminated.');
   isInitiator = true;
   isStarted = false;
+
+  location.reload();
 }
 
 function stop() {
