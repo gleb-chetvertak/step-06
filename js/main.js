@@ -133,7 +133,7 @@ var constraints = {
   audio: false,
 };
 
-navigator.mediaDevices.enumerateDevices()
+await navigator.mediaDevices.enumerateDevices()
   .then((res) => {
     res.forEach(({ kind }) => {
       if (kind === 'videoinput') {
@@ -146,13 +146,11 @@ navigator.mediaDevices.enumerateDevices()
     });
   });
 
-console.log(constraints);
-
-navigator.mediaDevices.getUserMedia(constraints)
-.then(gotStream)
-.catch(function(e) {
-  alert('getUserMedia() error: ' + e.name);
-});
+await navigator.mediaDevices.getUserMedia(constraints)
+  .then(gotStream)
+  .catch(function(e) {
+    alert('getUserMedia() error: ' + e.name);
+  });
 
 function gotStream(stream) {
   console.log('Adding local stream.');
