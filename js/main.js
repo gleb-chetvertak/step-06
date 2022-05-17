@@ -154,6 +154,8 @@ async function init() {
     });
 };
 
+init();
+
 function gotStream(stream) {
   console.log('Adding local stream.');
   localStream = stream;
