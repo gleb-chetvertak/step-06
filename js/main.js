@@ -249,6 +249,13 @@ function handleRemoteHangup() {
   isInitiator = true;
   isStarted = false;
 
+  isChannelReady = false;
+  isInitiator = false;
+  isStarted = false;
+  localStream = null;
+  pc = null;
+  remoteStream = null;
+
   // location.reload();
 }
 
