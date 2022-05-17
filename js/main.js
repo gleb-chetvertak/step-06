@@ -249,7 +249,7 @@ function handleRemoteHangup() {
   isInitiator = true;
   isStarted = false;
 
-  location.reload();
+  // location.reload();
 }
 
 function stop() {
