@@ -133,24 +133,26 @@ var constraints = {
   audio: false,
 };
 
-await navigator.mediaDevices.enumerateDevices()
-  .then((res) => {
-    res.forEach(({ kind }) => {
-      if (kind === 'videoinput') {
-        constraints.video = true;
-      }
+async function init() {
+  await navigator.mediaDevices.enumerateDevices()
+    .then((res) => {
+      res.forEach(({ kind }) => {
+        if (kind === 'videoinput') {
+          constraints.video = true;
+        }
 
-      if (kind === 'audioinput') {
-        constraints.audio = true;
-      }
+        if (kind === 'audioinput') {
+          constraints.audio = true;
+        }
+      });
     });
-  });
 
-await navigator.mediaDevices.getUserMedia(constraints)
-  .then(gotStream)
-  .catch(function(e) {
-    alert('getUserMedia() error: ' + e.name);
-  });
+  await navigator.mediaDevices.getUserMedia(constraints)
+    .then(gotStream)
+    .catch(function(e) {
+      alert('getUserMedia() error: ' + e.name);
+    });
+};
 
 function gotStream(stream) {
   console.log('Adding local stream.');
