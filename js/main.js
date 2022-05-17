@@ -128,7 +128,10 @@ socket.on('message', function(message) {
 var localVideo = document.querySelector('#localVideo');
 var remoteVideo = document.querySelector('#remoteVideo');
 
-var constraints = {};
+var constraints = {
+  video: false,
+  audio: false,
+};
 
 navigator.mediaDevices.enumerateDevices()
   .then((res) => {
