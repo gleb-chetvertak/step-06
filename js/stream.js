@@ -6,6 +6,7 @@ var isStarted = false;
 var localStream;
 var pc;
 var remoteStream;
+var isMuted = false;
 
 var iceConfig = {
   iceServers: [
@@ -269,8 +270,14 @@ function stop() {
   window.close();
 }
 
-function mute() {
-  alert('No mute for you, nigga');
+function toggleMute() {
+  isMuted = !isMuted;
+
+  const track = localStream.getAudioTracks()[0];
+
+  track.enabled = !isMuted;
+
+  muteButton.innerText = isMuted ? 'Umnute' : 'Mute';
 };
 
 const endCallButton = document.getElementById('end-call');
@@ -279,4 +286,4 @@ endCallButton.addEventListener('click', stop);
 
 const muteButton = document.getElementById('mute');
 
-muteButton.addEventListener('click', mute);
+muteButton.addEventListener('click', toggleMute);
