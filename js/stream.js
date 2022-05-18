@@ -43,7 +43,9 @@ if (!room) {
   // Could prompt for room name:
   // room = prompt('Enter room name:');
 
-  const roomUrl = `${document.location.origin}/?room=${room}`;
+  const roomUrl = `${document.location.href}?room=${room}`;
+
+  console.log(roomUrl);
 
   window.history.pushState({}, "" , roomUrl);
 }
@@ -261,6 +263,20 @@ function handleRemoteHangup() {
 
 function stop() {
   isStarted = false;
-  pc.close();
+  pc?.close();
   pc = null;
+
+  window.close();
 }
+
+function mute() {
+  alert('No mute for you, nigga');
+};
+
+const endCallButton = document.getElementById('end-call');
+
+endCallButton.addEventListener('click', stop);
+
+const muteButton = document.getElementById('mute');
+
+muteButton.addEventListener('click', mute);

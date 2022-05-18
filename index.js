@@ -2,28 +2,28 @@
 
 var os = require('os');
 var nodeStatic = require('node-static');
-// var http = require('http');
-var http = require('https');
+var http = require('http');
+// var http = require('https');
 var socketIO = require('socket.io');
 const port = process.env.PORT || 3000;
 
-const fs = require('fs');
-const options = {
-  key: fs.readFileSync('/var/www/webrtc/privkey.pem'),
-  cert: fs.readFileSync('/var/www/webrtc/fullchain.pem'),
-};
+// const fs = require('fs');
+// const options = {
+//   key: fs.readFileSync('/var/www/webrtc/privkey.pem'),
+//   cert: fs.readFileSync('/var/www/webrtc/fullchain.pem'),
+// };
 
 var fileServer = new(nodeStatic.Server)();
-// var app = http.createServer(function(req, res) {
-//   fileServer.serve(req, res);
-// }).listen(port,  () => {
-//   console.log("Listening on port " + port + "...")
-// });
-var app = http.createServer(options, function(req, res) {
+var app = http.createServer(function(req, res) {
   fileServer.serve(req, res);
 }).listen(port,  () => {
   console.log("Listening on port " + port + "...")
 });
+// var app = http.createServer(options, function(req, res) {
+//   fileServer.serve(req, res);
+// }).listen(port,  () => {
+//   console.log("Listening on port " + port + "...")
+// });
 
 var io = socketIO.listen(app);
 io.sockets.on('connection', function(socket) {
