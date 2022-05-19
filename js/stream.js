@@ -1,5 +1,9 @@
 'use strict';
 
+const micIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M10.021 11.375Q9.125 11.375 8.49 10.74Q7.854 10.104 7.854 9.208V4.229Q7.854 3.333 8.49 2.708Q9.125 2.083 10.021 2.083Q10.917 2.083 11.542 2.708Q12.167 3.333 12.167 4.229V9.208Q12.167 10.104 11.542 10.74Q10.917 11.375 10.021 11.375ZM9.354 17.292V14.625Q7.292 14.396 5.938 12.844Q4.583 11.292 4.583 9.208H5.917Q5.917 10.917 7.115 12.115Q8.312 13.312 10.021 13.312Q11.708 13.312 12.906 12.115Q14.104 10.917 14.104 9.208H15.438Q15.438 11.312 14.094 12.854Q12.75 14.396 10.688 14.625V17.292Z"/></svg>';
+
+const micOffIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M14.479 11.896 13.458 10.896Q13.667 10.542 13.771 10.104Q13.875 9.667 13.875 9.208H15.208Q15.208 9.958 15.031 10.646Q14.854 11.333 14.479 11.896ZM11.833 9.271 7.625 5.042V4.25Q7.625 3.354 8.26 2.719Q8.896 2.083 9.792 2.083Q10.688 2.083 11.312 2.719Q11.938 3.354 11.938 4.25V8.646Q11.938 8.812 11.917 8.99Q11.896 9.167 11.833 9.271ZM16.417 18.208 12.229 13.979Q11.854 14.271 11.354 14.427Q10.854 14.583 10.458 14.625V17.292H9.125V14.625Q7.208 14.417 5.781 12.917Q4.354 11.417 4.354 9.208H5.688Q5.688 10.917 6.885 12.115Q8.083 13.312 9.792 13.312Q10.167 13.312 10.531 13.188Q10.896 13.062 11.104 12.896L1.479 3.271L2.417 2.333L17.354 17.25Z"/></svg>';
+
 var isChannelReady = false;
 var isInitiator = false;
 var isStarted = false;
@@ -120,8 +124,8 @@ socket.on('message', function(message) {
 
 ////////////////////////////////////////////////////
 
-var localVideo = document.querySelector('#localVideo');
-var remoteVideo = document.querySelector('#remoteVideo');
+var localVideo = document.querySelector('#local-video');
+var remoteVideo = document.querySelector('#remote-video');
 
 var constraints = {
   video: false,
@@ -277,13 +281,15 @@ function toggleMute() {
 
   track.enabled = !isMuted;
 
-  muteButton.innerText = isMuted ? 'Umnute' : 'Mute';
+  muteButton.classList.toggle('button--active');
+
+  muteButton.innerHTML = isMuted ? micOffIcon : micIcon;
 };
 
-const endCallButton = document.getElementById('end-call');
+const endCallButton = document.getElementById('end-call-button');
 
 endCallButton.addEventListener('click', stop);
 
-const muteButton = document.getElementById('mute');
+const muteButton = document.getElementById('mute-button');
 
 muteButton.addEventListener('click', toggleMute);

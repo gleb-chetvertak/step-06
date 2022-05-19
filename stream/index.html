@@ -11,19 +11,27 @@
 
 <body>
 
-  <div id="videos">
-    <video id="localVideo" autoplay muted playsinline></video>
-    <video id="remoteVideo" autoplay playsinline></video>
+  <div class="local-video-wrapper">
+    <video id="local-video" class="local-video" autoplay muted playsinline></video>
+  </div>
+  
+  <div class="remote-video-wrapper">
+    <video id="remote-video" class="remote-video" autoplay playsinline></video>
   </div>
 
-  <button id="end-call">End call</button>
-  
-  <button id="mute">Mute</button>
+  <div class="buttons">
+    <button id="mute-button" class="button">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M10.021 11.375Q9.125 11.375 8.49 10.74Q7.854 10.104 7.854 9.208V4.229Q7.854 3.333 8.49 2.708Q9.125 2.083 10.021 2.083Q10.917 2.083 11.542 2.708Q12.167 3.333 12.167 4.229V9.208Q12.167 10.104 11.542 10.74Q10.917 11.375 10.021 11.375ZM9.354 17.292V14.625Q7.292 14.396 5.938 12.844Q4.583 11.292 4.583 9.208H5.917Q5.917 10.917 7.115 12.115Q8.312 13.312 10.021 13.312Q11.708 13.312 12.906 12.115Q14.104 10.917 14.104 9.208H15.438Q15.438 11.312 14.094 12.854Q12.75 14.396 10.688 14.625V17.292Z"/></svg>
+    </button>
+
+    <button id="end-call-button" class="button button--end-call">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M12 8.25Q14.975 8.25 17.788 9.45Q20.6 10.65 22.725 12.925Q22.925 13.15 22.925 13.462Q22.925 13.775 22.725 13.975L20.425 16.225Q20.225 16.425 19.95 16.45Q19.675 16.475 19.45 16.3L16.25 13.875V10.475Q15.2 10.125 14.125 9.938Q13.05 9.75 12 9.75Q10.95 9.75 9.875 9.938Q8.8 10.125 7.75 10.475V13.875L4.55 16.3Q4.325 16.475 4.05 16.45Q3.775 16.425 3.575 16.225L1.275 13.975Q1.05 13.75 1.062 13.45Q1.075 13.15 1.275 12.925Q3.4 10.625 6.213 9.438Q9.025 8.25 12 8.25Z"/></svg>
+    </button>
+  </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
   <script src="../js/stream.js"></script>
-
 </body>
 
 </html>

@@ -1,13 +1,83 @@
 body {
+  margin: 0;
   font-family: sans-serif;
+  background-color: #202124;
 }
 
-canvas {
-  max-width: 100%;
-  width: 320px;
+.remote-video-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
-video {
-  max-width: 100%;
-  width: 320px;
+.remote-video {
+  width: 100%;
+  height: 100%;
+}
+
+.local-video-wrapper {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+}
+
+.local-video {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 8px;
+  box-shadow: 0px 1px 3px 0px rgb(60 64 67 / 30%), 0px 4px 8px 3px rgb(60 64 67 / 15%);
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  padding: 0 32px;
+  position: fixed;
+  bottom: 32px;
+  left: 0;
+  justify-content: center;
+  align-content: center;
+  gap: 20px;
+}
+
+.button {
+  display: flex;
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background-color: #3c4043;
+  cursor: pointer;
+  will-change: background-color opacity;
+  transition: background-color .3s ease-out, opacity .3s ease-out;
+}
+
+.button:hover {
+  background-color: #696B6E;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 60%), 0 1px 3px 1px rgb(60 64 67 / 30%);
+}
+
+.button--end-call,
+.button--active {
+  background-color: #ea4335;
+}
+
+.button--end-call:hover,
+.button--active:hover {
+  background-color: #FF6F8D;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 60%), 0 1px 3px 1px rgb(60 64 67 / 30%);
+}
+
+.button > svg {
+  fill: #FFFFFF;
+}
+
+@media screen and (max-width: 450px) {
+  .buttons {
+    justify-content: flex-start;
+  }
 }
