@@ -43,16 +43,16 @@ var iceConfig = {
       //   credential: 'homeo',
       //   username: 'homeo'
       // },
-      {
-        url: 'turn:turn.anyfirewall.com:443?transport=tcp',
-        credential: 'webrtc',
-        username: 'webrtc'
-      },
       // {
-      //   url: 'turn:relay.backups.cz',
+      //   url: 'turn:turn.anyfirewall.com:443?transport=tcp',
       //   credential: 'webrtc',
       //   username: 'webrtc'
       // },
+      {
+        url: 'turn:relay.backups.cz',
+        credential: 'webrtc',
+        username: 'webrtc'
+      },
       // {
       //   url: 'turn:relay.backups.cz?transport=tcp',
       //   credential: 'webrtc',
