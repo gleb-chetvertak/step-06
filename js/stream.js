@@ -48,16 +48,16 @@ var iceConfig = {
       //   credential: 'webrtc',
       //   username: 'webrtc'
       // },
-      // {
-      //   url: 'turn:relay.backups.cz',
-      //   credential: 'webrtc',
-      //   username: 'webrtc'
-      // },
       {
-        url: 'turn:relay.backups.cz?transport=tcp',
+        url: 'turn:relay.backups.cz',
         credential: 'webrtc',
         username: 'webrtc'
       },
+      // {
+      //   url: 'turn:relay.backups.cz?transport=tcp',
+      //   credential: 'webrtc',
+      //   username: 'webrtc'
+      // },
       
   ],
 };
