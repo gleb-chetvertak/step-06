@@ -14,72 +14,13 @@ var isMuted = false;
 
 var iceConfig = {
   iceServers: [
-      // { url: 'stun:stun.l.google.com:19302' },
-      // { url: 'stun:stun1.l.google.com:19302' },
-      // { url: 'stun:stun2.l.google.com:19302' },
-      // { url: 'stun:stun3.l.google.com:19302' },
-      // { url: 'stun:stun4.l.google.com:19302' },
-      // { url: 'stun:stun.ekiga.net' },
-      // { url: 'stun:stun.ideasip.com' },
-      // { url: 'stun:stun.schlund.de' },
-      // { url: 'stun:stun.stunprotocol.org:3478' },
-      // { url: 'stun:stun.voiparound.com' },
-      // { url: 'stun:stun.voipbuster.com' },
-      // { url: 'stun:stun.voipstunt.com' },
-      // { url: 'turn:turn01.hubl.in?transport=udp' },
-      // { url: 'turn:turn02.hubl.in?transport=tcp' },
-      // {
-      //   url: 'turn:numb.viagenie.ca',
-      //   credential: 'muazkh',
-      //   username: 'webrtc@live.com'
-      // },
-      // {
-      //   url: 'turn:192.158.29.39:3478?transport=udp',
-      //   credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
-      //   username: '28224511:1379330808'
-      // },
-      // {
-      //   url: 'turn:turn.bistri.com:80',
-      //   credential: 'homeo',
-      //   username: 'homeo'
-      // },
-      // {
-      //   url: 'turn:turn.anyfirewall.com:443?transport=tcp',
-      //   credential: 'webrtc',
-      //   username: 'webrtc'
-      // },
-      // {
-      //   url: 'turn:relay.backups.cz',
-      //   credential: 'webrtc',
-      //   username: 'webrtc'
-      // },
-      // {
-      //   url: 'turn:relay.backups.cz?transport=tcp',
-      //   credential: 'webrtc',
-      //   username: 'webrtc'
-      // },
-      // {
-      //   url: 'turn:webrtcweb.com:7788',
-      //   username: 'muazkh',
-      //   credential: 'muazkh'
-      // },
-      // {
-      //   url: 'turn:webrtcweb.com:8877',
-      //   username: 'muazkh',
-      //   credential: 'muazkh'
-      // },
-      // {
-      //   url: 'turn:webrtcweb.com:4455',
-      //   username: 'muazkh',
-      //   credential: 'muazkh'
-      // },
     {
-      urls: 'stun:turn.so24.net:5349?transport=udp',
+      urls: `stun:${window.TURN_SERVER_URL}`,
     },
     {
-      urls: 'turn:turn.so24.net:5349?transport=udp', 
-      username: 'guest', 
-      credential: 'somepassword',
+      urls: `turn:${window.TURN_SERVER_URL}`,
+      username: window.TURN_SERVER_USERNAME, 
+      credential: window.TURN_SERVER_CREDENTIAL,
     },
   ],
 };
